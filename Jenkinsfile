@@ -8,18 +8,19 @@ pipeline {
       }
       stage('Docker Build') {
          steps {
-            def branch = readFile('branch').trim()
-            if (branch == master) {
-               sh(script: 'docker images -a')
-               sh(script: """
-               cd azure-vote/
-               docker images -a
-               docker build -t jenkins-pipeline .
-               docker images -a
-               cd ..
-            """)
+            script {
+               def branch = readFile('branch').trim()
+               if (branch == master) {
+                  sh(script: 'docker images -a')
+                  sh(script: """
+                  cd azure-vote/
+                  docker images -a
+                  docker build -t jenkins-pipeline .
+                  docker images -a
+                  cd ..
+               """)
             }
-            
+            }
          }
       }
    }
