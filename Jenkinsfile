@@ -9,8 +9,7 @@ pipeline {
       stage('Docker Build') {
          steps {
             script {
-               def branch = readFile('branch').trim()
-               if (branch == master) {
+               if ($GIT_BRANCH == "origin/master") {
                   sh(script: 'docker images -a')
                   sh(script: """
                   cd azure-vote/
