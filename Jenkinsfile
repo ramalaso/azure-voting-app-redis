@@ -8,8 +8,7 @@ pipeline {
       }
       stage('Docker Build') {
          steps {
-            script {
-               if ($GIT_BRANCH == "origin/master") {
+            script {    
                   sh(script: 'docker images -a')
                   sh(script: """
                   cd azure-vote/
@@ -18,7 +17,6 @@ pipeline {
                   docker images -a
                   cd ..
                """)
-            }
             }
          }
       }
