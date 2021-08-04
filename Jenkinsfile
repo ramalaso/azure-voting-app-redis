@@ -9,7 +9,6 @@ pipeline {
       stage('Docker Build') {
          steps {
             script {    
-                  sh(script: 'sudo service docker start')
                   sh(script: 'docker images -a')
                   sh(script: """
                   cd azure-vote/
